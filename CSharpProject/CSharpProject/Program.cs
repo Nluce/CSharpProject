@@ -11,7 +11,7 @@ namespace CSharpProject
 
         void SampleFunction();
 
-        int SampleProperty
+        /*int SampleProperty
         {
 
             get;
@@ -19,11 +19,11 @@ namespace CSharpProject
             set;
 
         }
-
+        */
     }
     public class TestClass : ITestInterface
     {
-        private int testVariable;
+        private int testVariable = 80;
         public void SampleFunction()
         {
             Console.WriteLine("sample variable = " + testVariable);
