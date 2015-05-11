@@ -6,16 +6,36 @@ using System.Threading.Tasks;
 
 namespace CSharpProject
 {
-    class Program
+    public interface ITestInterface
     {
-        static string input; 
+
+        void SampleFunction();
+
+        int SampleProperty
+        {
+
+            get;
+
+            set;
+
+        }
+
+    }
+    public class TestClass : ITestInterface
+    {
+        private int testVariable;
+        public void SampleFunction()
+        {
+            Console.WriteLine("sample variable = " + testVariable);
+        }
         static void Main(string[] args)
         {
-           
-                Console.Write("Enter your name\n");
-                input = Console.ReadLine();
-                Console.Write("Hello " + input + "\n");
-                while (true) ;
+            ITestInterface obj = new TestClass();
+            obj.SampleFunction();
+
+            //hold window
+            while (true) ;
         }
     }
 }
+   
