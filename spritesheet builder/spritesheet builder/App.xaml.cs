@@ -13,5 +13,6 @@ namespace spritesheet_builder
     /// </summary>
     public partial class App : Application
     {
+
     }
 }
