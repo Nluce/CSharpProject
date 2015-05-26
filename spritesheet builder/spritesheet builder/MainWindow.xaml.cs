@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using Microsoft.Win32;
 
 namespace spritesheet_builder
 {
@@ -28,7 +29,7 @@ namespace spritesheet_builder
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            OpenFileDialog dlg = new OpenFileDialog();
             dlg.FileName = "Document"; // Default file name 
             dlg.DefaultExt = ".png"; // Default file extension 
             dlg.Filter = "Png Images (.png)|*.png"; // Filter files by extension 
@@ -50,7 +51,7 @@ namespace spritesheet_builder
         {
 
             if (false) { 
-                Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+                SaveFileDialog dlg = new SaveFileDialog();
                 dlg.FileName = "SpriteSheet.png";
                 dlg.DefaultExt = ".png"; // Default file extension 
                 dlg.Filter = "Png Images (.png)|*.png"; // Filter files by extension 
@@ -66,14 +67,18 @@ namespace spritesheet_builder
                 BitmapSource bitmapSource = decoder.Frames[0];
 
                 // Draw the Image
-                Image myImage = new Image();
-                myImage.Source = bitmapSource;
-                myImage.Stretch = Stretch.None;
-                myImage.Margin = new Thickness(20); Console.Out.WriteLine(file);
-                Console.Out.WriteLine(myImage.IsLoaded);
-                Console.Out.WriteLine(myImage.ActualHeight);
+                Image image = new Image();
+                image.Source = bitmapSource;
+                image.Stretch = Stretch.None;
+                image.Margin = new Thickness(20); 
+                Console.Out.WriteLine(file);
+                Console.Out.WriteLine(bitmapSource.Width);
+                Console.Out.WriteLine(bitmapSource.Height);
 
                 ImageArea.Source = bitmapSource;
+                ImageArea.Stretch = Stretch.None;
+
+                
 
             }
         }

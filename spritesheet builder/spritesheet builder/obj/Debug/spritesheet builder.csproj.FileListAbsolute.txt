@@ -24,3 +24,16 @@ C:\Users\Nuke\Documents\GitHub\CSharpProject\spritesheet builder\spritesheet bui
 C:\Users\Nuke\Documents\GitHub\CSharpProject\spritesheet builder\spritesheet builder\obj\Debug\spritesheet builder.g.resources
 C:\Users\Nuke\Documents\GitHub\CSharpProject\spritesheet builder\spritesheet builder\obj\Debug\spritesheet_builder.Properties.Resources.resources
 C:\Users\Nuke\Documents\GitHub\CSharpProject\spritesheet builder\spritesheet builder\obj\Debug\spritesheet builder.csproj.GenerateResource.Cache
+C:\Users\Bugs\Documents\GitHub\CSharpProject\spritesheet builder\spritesheet builder\bin\Debug\spritesheet builder.exe.config
+C:\Users\Bugs\Documents\GitHub\CSharpProject\spritesheet builder\spritesheet builder\obj\Debug\spritesheet builder.exe
+C:\Users\Bugs\Documents\GitHub\CSharpProject\spritesheet builder\spritesheet builder\obj\Debug\spritesheet builder.pdb
+C:\Users\Bugs\Documents\GitHub\CSharpProject\spritesheet builder\spritesheet builder\bin\Debug\spritesheet builder.exe
+C:\Users\Bugs\Documents\GitHub\CSharpProject\spritesheet builder\spritesheet builder\bin\Debug\spritesheet builder.pdb
+C:\Users\Bugs\Documents\GitHub\CSharpProject\spritesheet builder\spritesheet builder\obj\Debug\spritesheet builder.csprojResolveAssemblyReference.cache
+C:\Users\Bugs\Documents\GitHub\CSharpProject\spritesheet builder\spritesheet builder\obj\Debug\MainWindow.baml
+C:\Users\Bugs\Documents\GitHub\CSharpProject\spritesheet builder\spritesheet builder\obj\Debug\MainWindow.g.cs
+C:\Users\Bugs\Documents\GitHub\CSharpProject\spritesheet builder\spritesheet builder\obj\Debug\App.g.cs
+C:\Users\Bugs\Documents\GitHub\CSharpProject\spritesheet builder\spritesheet builder\obj\Debug\spritesheet builder_MarkupCompile.cache
+C:\Users\Bugs\Documents\GitHub\CSharpProject\spritesheet builder\spritesheet builder\obj\Debug\spritesheet builder.g.resources
+C:\Users\Bugs\Documents\GitHub\CSharpProject\spritesheet builder\spritesheet builder\obj\Debug\spritesheet_builder.Properties.Resources.resources
+C:\Users\Bugs\Documents\GitHub\CSharpProject\spritesheet builder\spritesheet builder\obj\Debug\spritesheet builder.csproj.GenerateResource.Cache
