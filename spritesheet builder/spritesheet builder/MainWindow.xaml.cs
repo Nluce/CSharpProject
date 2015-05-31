@@ -72,8 +72,8 @@ namespace spritesheet_builder
                 image.Stretch = Stretch.None;
                 image.Margin = new Thickness(20); 
                 Console.Out.WriteLine(file);
-                Console.Out.WriteLine(bitmapSource.Width);
-                Console.Out.WriteLine(bitmapSource.Height);
+                Console.Out.WriteLine(bitmapSource.PixelWidth);
+                Console.Out.WriteLine(bitmapSource.PixelHeight);
 
                 ImageArea.Source = bitmapSource;
                 ImageArea.Stretch = Stretch.None;
@@ -81,6 +81,6 @@ namespace spritesheet_builder
                 
 
             }
-        }
+        } 
     }
 }
