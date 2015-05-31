@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+
+
 using Microsoft.Win32;
 
 namespace spritesheet_builder
@@ -60,27 +62,43 @@ namespace spritesheet_builder
             }
             Image[] images = new Image[filenames.Length];
 
+            DrawingVisual drawingVisual = new DrawingVisual();
+
+
+            DrawingContext drawingContext = drawingVisual.RenderOpen();
+
+            int x = 0; 
+            int y = 0;
+            
+
             foreach(string file in filenames){
                 // Open a Stream and decode a PNG image
                 Stream imageStreamSource = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read);
                 PngBitmapDecoder decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
                 BitmapSource bitmapSource = decoder.Frames[0];
 
-                // Draw the Image
-                Image image = new Image();
-                image.Source = bitmapSource;
-                image.Stretch = Stretch.None;
-                image.Margin = new Thickness(20); 
                 Console.Out.WriteLine(file);
                 Console.Out.WriteLine(bitmapSource.PixelWidth);
                 Console.Out.WriteLine(bitmapSource.PixelHeight);
+            
 
-                ImageArea.Source = bitmapSource;
-                ImageArea.Stretch = Stretch.None;
+                Rect recked = new Rect(x, y, bitmapSource.PixelWidth, bitmapSource.PixelHeight);
 
-                
+                drawingContext.DrawImage(bitmapSource, recked);
+
+                x += bitmapSource.PixelWidth;
+
 
             }
+
+            drawingContext.Close();
+
+            RenderTargetBitmap bmp = new RenderTargetBitmap(256, 256, 96, 96, PixelFormats.Pbgra32);
+            bmp.Render(drawingVisual);
+
+            ImageArea.Source = bmp;
+            ImageArea.Stretch = Stretch.None;
+
         } 
     }
 }
