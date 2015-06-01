@@ -19,6 +19,29 @@ using Microsoft.Win32;
 
 namespace spritesheet_builder
 {
+
+    public class SpriteRecord
+    {
+        // holde the sprite image
+        public BitmapSource spriteImage;
+
+        // holds the position of the sprite on the sprite sheet
+        public Rect rect;
+
+        public static int CompareByHeight(SpriteRecord x, SpriteRecord y){
+            return -x.spriteImage.PixelHeight.CompareTo (y.spriteImage.PixelHeight);
+        }
+
+
+        internal void setPosition(int x, int y)
+        {
+            rect.X = x;
+            rect.Y = y;
+            rect.Width = spriteImage.PixelWidth;
+            rect.Height = spriteImage.PixelHeight;
+        }
+    }
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -67,8 +90,9 @@ namespace spritesheet_builder
 
             DrawingContext drawingContext = drawingVisual.RenderOpen();
 
-            int x = 0; 
-            int y = 0;
+
+
+            List<SpriteRecord> spriteList = new List<SpriteRecord>();
             
 
             foreach(string file in filenames){
@@ -76,20 +100,49 @@ namespace spritesheet_builder
                 Stream imageStreamSource = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read);
                 PngBitmapDecoder decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
                 BitmapSource bitmapSource = decoder.Frames[0];
-
                 Console.Out.WriteLine(file);
                 Console.Out.WriteLine(bitmapSource.PixelWidth);
                 Console.Out.WriteLine(bitmapSource.PixelHeight);
-            
 
-                Rect recked = new Rect(x, y, bitmapSource.PixelWidth, bitmapSource.PixelHeight);
+                SpriteRecord spriteRecord = new SpriteRecord();
+                spriteRecord.spriteImage = bitmapSource;
+                spriteList.Add(spriteRecord);
+            }
 
-                drawingContext.DrawImage(bitmapSource, recked);
+            spriteList.Sort(SpriteRecord.CompareByHeight);
 
-                x += bitmapSource.PixelWidth;
+            const int sheetWidth = 128;
+            const int sheetHeight = 256;
+
+            int x = 0; 
+            int y = 0;
+            int nextRow = y;
+
+            foreach (SpriteRecord spriteRecord in spriteList)
+            {
+
+
+                spriteRecord.setPosition(x, y);
+
+                if (x + spriteRecord.spriteImage.PixelWidth >= sheetWidth)
+                {
+                    x = 0;
+                    y = nextRow;
+                    spriteRecord.setPosition(x, y);
+
+                }
+
+                nextRow = Math.Max(y + spriteRecord.spriteImage.PixelHeight, nextRow);
+
+                x += spriteRecord.spriteImage.PixelWidth;
+
+                drawingContext.DrawImage(spriteRecord.spriteImage, spriteRecord.rect);
+
+       
 
 
             }
+
 
             drawingContext.Close();
 
