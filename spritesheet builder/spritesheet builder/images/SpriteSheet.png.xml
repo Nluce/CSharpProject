@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SpriteSheet FileName="SpriteSheet.png">
+  <Sprite FileName="Zergling.png" Rectangle="0,0,106,88" />
+  <Sprite FileName="Pokey.png" Rectangle="106,0,18,80" />
+  <Sprite FileName="bbill.png" Rectangle="124,0,64,64" />
+  <Sprite FileName="BBoo2.png" Rectangle="0,88,72,64" />
+  <Sprite FileName="BBoo.png" Rectangle="72,88,65,64" />
+  <Sprite FileName="Dino1.png" Rectangle="137,88,34,34" />
+  <Sprite FileName="Dino2.png" Rectangle="171,88,33,34" />
+  <Sprite FileName="firedude.png" Rectangle="204,88,51,33" />
+  <Sprite FileName="Rhino.png" Rectangle="0,152,32,33" />
+  <Sprite FileName="koopa.png" Rectangle="32,152,21,33" />
+  <Sprite FileName="fireball.png" Rectangle="53,152,32,32" />
+  <Sprite FileName="Thwomp.png" Rectangle="85,152,24,32" />
+  <Sprite FileName="redkoopa2.png" Rectangle="109,152,18,32" />
+  <Sprite FileName="redPkoopa1.png" Rectangle="127,152,24,31" />
+  <Sprite FileName="redPkoopa2.png" Rectangle="151,152,17,30" />
+  <Sprite FileName="bowserbot.png" Rectangle="168,152,37,27" />
+  <Sprite FileName="redkoopa1.png" Rectangle="205,152,16,26" />
+  <Sprite FileName="wiggler.png" Rectangle="0,185,48,25" />
+  <Sprite FileName="redkoopa3.png" Rectangle="48,185,18,24" />
+  <Sprite FileName="madwiggler.png" Rectangle="66,185,48,21" />
+  <Sprite FileName="hippo.png" Rectangle="114,185,20,18" />
+  <Sprite FileName="hammer.png" Rectangle="134,185,14,16" />
+  <Sprite FileName="football.png" Rectangle="148,185,16,16" />
+  <Sprite FileName="minithwomp.png" Rectangle="164,185,16,16" />
+  <Sprite FileName="superkoopa.png" Rectangle="180,185,23,13" />
+</SpriteSheet>

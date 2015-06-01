@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using System.Xml.Linq;
 
 
 using Microsoft.Win32;
@@ -28,8 +29,10 @@ namespace spritesheet_builder
         // holds the position of the sprite on the sprite sheet
         public Rect rect;
 
+        public string FileName;
+
         public static int CompareByHeight(SpriteRecord x, SpriteRecord y){
-            return -x.spriteImage.PixelHeight.CompareTo (y.spriteImage.PixelHeight);
+            return -x.spriteImage.PixelHeight.CompareTo(y.spriteImage.PixelHeight);
         }
 
 
@@ -47,6 +50,10 @@ namespace spritesheet_builder
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<SpriteRecord> SpriteList = new List<SpriteRecord>();
+
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -75,50 +82,33 @@ namespace spritesheet_builder
         private void MakeSpriteSheet(string[] filenames)
         {
 
-            if (false) { 
-                SaveFileDialog dlg = new SaveFileDialog();
-                dlg.FileName = "SpriteSheet.png";
-                dlg.DefaultExt = ".png"; // Default file extension 
-                dlg.Filter = "Png Images (.png)|*.png"; // Filter files by extension 
-                // Show open file dialog box 
-                Nullable<bool> result = dlg.ShowDialog();
-            }
-            Image[] images = new Image[filenames.Length];
-
-            DrawingVisual drawingVisual = new DrawingVisual();
-
-
-            DrawingContext drawingContext = drawingVisual.RenderOpen();
-
-
-
-            List<SpriteRecord> spriteList = new List<SpriteRecord>();
-            
+            SpriteList = new List<SpriteRecord>();
 
             foreach(string file in filenames){
                 // Open a Stream and decode a PNG image
                 Stream imageStreamSource = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read);
                 PngBitmapDecoder decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
                 BitmapSource bitmapSource = decoder.Frames[0];
-                Console.Out.WriteLine(file);
-                Console.Out.WriteLine(bitmapSource.PixelWidth);
-                Console.Out.WriteLine(bitmapSource.PixelHeight);
 
                 SpriteRecord spriteRecord = new SpriteRecord();
                 spriteRecord.spriteImage = bitmapSource;
-                spriteList.Add(spriteRecord);
+                spriteRecord.FileName = System.IO.Path.GetFileName(file);
+                SpriteList.Add(spriteRecord);
             }
 
-            spriteList.Sort(SpriteRecord.CompareByHeight);
+            SpriteList.Sort(SpriteRecord.CompareByHeight);
 
-            const int sheetWidth = 128;
+            const int sheetWidth = 256;
             const int sheetHeight = 256;
 
             int x = 0; 
             int y = 0;
             int nextRow = y;
 
-            foreach (SpriteRecord spriteRecord in spriteList)
+            DrawingVisual drawingVisual = new DrawingVisual();
+            DrawingContext drawingContext = drawingVisual.RenderOpen();
+
+            foreach (SpriteRecord spriteRecord in SpriteList)
             {
 
 
@@ -137,12 +127,7 @@ namespace spritesheet_builder
                 x += spriteRecord.spriteImage.PixelWidth;
 
                 drawingContext.DrawImage(spriteRecord.spriteImage, spriteRecord.rect);
-
-       
-
-
             }
-
 
             drawingContext.Close();
 
@@ -151,6 +136,48 @@ namespace spritesheet_builder
 
             ImageArea.Source = bmp;
             ImageArea.Stretch = Stretch.None;
+
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.FileName = "SpriteSheet.png";
+            dlg.DefaultExt = ".png"; // Default file extension 
+            dlg.Filter = "Png Images (.png)|*.png"; // Filter files by extension 
+            // Show open file dialog box 
+            Nullable<bool> result = dlg.ShowDialog();
+
+            if (result == true) {
+                using (var fileStream = new FileStream(dlg.FileName, FileMode.Create))
+                {
+                    BitmapEncoder encoder = new PngBitmapEncoder();
+                    encoder.Frames.Add(BitmapFrame.Create(ImageArea.Source as BitmapSource));
+                    encoder.Save(fileStream);
+                }
+
+
+                SaveXML(dlg.FileName);
+            }
+
+
+
+        }
+
+        private void SaveXML(string fileName)
+        {
+            var root = new XElement("SpriteSheet");
+
+            root.Add(new XAttribute("FileName", System.IO.Path.GetFileName(fileName)));
+
+            foreach (SpriteRecord spriteRecord in SpriteList)
+            {
+                var spriteElement = new XElement("Sprite", new XAttribute("FileName", spriteRecord.FileName));
+                spriteElement.Add(new XAttribute("Rectangle", spriteRecord.rect));
+                root.Add(spriteElement);
+            }
+
+            root.Save(fileName + ".xml");
 
         } 
     }
