@@ -1,0 +1,23 @@
+This program takes mutipule .png files, sorts them by height, and saves
+them as a .png file with an .xml file.
+The .xml file stores the name of each sprite and the position of each sprite
+in the sprite sheet.
+The format of the sprite .xml file:
+The root element is "SpriteSheet"
+SpriteSheet has a FileName attribute which contains the filename
+of the sprite sheet image.
+The next element is "Sprite"
+Each sprite element represents a sprite in the sprite sheet.
+The sprite element contains a FileName attribute that represents the
+filename of the sprite.
+The sprite element also contains a "Rectanle" attribute that represents
+the position of the sprite within the sprite sheet.
+The value of the rectangle attribute is 4 numbers seperated by commas.
+The 4 numbers represents: Xpos,Ypos,Width,Height
+
+It also shows a preview of the sprite sheet before saving.
+It properly handles tranparency in the sprites.
+
+Features to add:
+-support for larger sprite sheets
+-more efficent sprite packing
