@@ -1,0 +1,11 @@
+-max sprite sheet size is 256x256
+-program will only accept .png files
+-program will sort by height to save space
+
+To mack a sprite sheet, click the "add sprites" button. a selection window will pop up,
+Multiselect all files you want and hit "open".
+A preview of the sprite sheet will pop up, if it is not to your liking
+you can re-select the files.
+When you are happy with the preview hit "save sprite sheet"
+and a new window to pop up to save the sprite sheet to where you want.
+Hit save and you're done!

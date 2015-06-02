@@ -1,0 +1,9 @@
+The main goal of the design is to make the sprite sheet maker simple and
+easy to use. Which includes having a button to add sprites.
+
+The Program just loads the sprites from the file directory and makes a new image for that 
+while keeping track of sprite info size,name,position etc. in the Xml
+
+The program sorts the sprites by height when it puts a new sprite on it checks to see if the sprite is the
+tallest in the row, and/or if it wont fit in the row and It will automatically ajust to make the next row
+under the tallest sprite in the last row.

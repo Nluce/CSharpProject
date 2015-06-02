@@ -1,0 +1,3 @@
+For testing try sprites with diffrent sizes, tranparencies, and height/width ratios, 
+It should work with transparencies and diffrent sizes fine. The max size is 256x256 so keep the
+total size of all the sprites under that.
